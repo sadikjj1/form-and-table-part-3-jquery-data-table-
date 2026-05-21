@@ -234,7 +234,7 @@ $(document).ready(function() {
   });
 
   // ==========================================
-  // 6. FORM PROCESSING & ANTI-DUPLICATION ENGINE
+  // 6. FORM PROCESSING & ANTI-DUPLICATION ENGINE +  poster massage 
   // ==========================================
   $('#applicationForm').on('submit', function(e) {
     e.preventDefault();
