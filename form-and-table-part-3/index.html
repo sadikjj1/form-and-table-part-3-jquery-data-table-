@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sub Department Selection System</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-red-500 text-gray-900 dark:bg-gray-900 dark:text-gray-100 min-h-screen font-sans antialiased transition-colors duration-200">
+
+  <div class="top-bar flex max-w-5xl mx-auto pt-6 px-4 justify-end">
+    <button id="themeToggle" class="py-2 px-4 text-sm font-medium text-white bg-black rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-200 dark:text-black dark:border-gray-600 dark:hover:text-white cursor-pointer transition-all">🌙 Dark Mode</button>
+  </div>
+
+  <div class="max-w-2xl mx-auto my-8 bg-blue-500 dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+    <h2 id="formHeading" class="mb-6 text-3xl text-center font-extrabold tracking-tight text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-700 pb-3">Department Selection Form</h2>
+
+    <form id="applicationForm" class="space-y-4" novalidate>
+      
+
+
+      <!-- name input section -->
+
+
+      <div>
+        <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Name of Applicant:*</label>
+        <input type="text" id="name" name="name" placeholder="👤 YOUR NAME" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white uppercase" />
+        <p id="nameError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Name must contain letters and spaces only (Min 3 characters).</p>
+      </div>
+
+      <!-- department selection space -->
+
+      <div class="department bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600/60 space-y-3">
+        <label class="block mb-1 text-sm font-semibold text-gray-900 dark:text-gray-300">Select Your Department:*</label>
+        <div class="flex flex-wrap gap-x-6 gap-y-3">
+          <div class="flex items-center"><input type="radio" id="frontend" name="department" value="Frontend" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="frontend" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">Frontend</label></div>
+          <div class="flex items-center"><input type="radio" id="backend" name="department" value="Backend" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="backend" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">Backend</label></div>
+          <div class="flex items-center"><input type="radio" id="fullstack" name="department" value="Fullstack" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="fullstack" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">Fullstack</label></div>
+          <div class="flex items-center"><input type="radio" id="mobile" name="department" value="Mobile App Dev" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="mobile" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">Mobile App Development</label></div>
+          <div class="flex items-center"><input type="radio" id="design" name="department" value="Design" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="design" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">Design</label></div>
+          <div class="flex items-center"><input type="radio" id="qa" name="department" value="Q&A and Testing" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="qa" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">Q&A and Testing</label></div>
+          <div class="flex items-center"><input type="radio" id="pm" name="department" value="Product Manager" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="pm" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">Product Manager</label></div>
+          <div class="flex items-center"><input type="radio" id="hr" name="department" value="HR" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="hr" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">HR</label></div>
+          <div class="flex items-center"><input type="radio" id="marketing" name="department" value="Sales and Marketing" class="w-4 h-4 text-blue-600 border-gray-300"/><label for="marketing" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap">Sales & Marketing</label></div>
+        </div>
+        <p id="deptError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Please choose a department entry option.</p>
+      </div>
+
+
+      <!-- social link space -->
+
+      <div>
+        <label for="social-link" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Social Media Link(linkedin.com/github.com/facebook.com):*</label>
+        <input type="url" id="social-link" name="social-link" placeholder="🌐 https://linkedin.com/in/username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+        <p id="socialError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Link must start with https:// and belong to linkedin.com, github.com, or facebook.com.</p>
+      </div>
+
+
+      <!-- mobile number space -->
+
+      <div>
+        <label for="mobile-number" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Mobile Number (WhatsApp):*</label>
+        <div class="flex select-none">
+          <span class="inline-flex items-center px-3 text-lg text-gray-500 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600 font-bold tracking-wider">
+            +88 01
+          </span>
+          <input type="tel" id="mobile-number" name="mobile-number" placeholder="XXXXXXX" maxlength="9" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-semibold tracking-widest"/>
+        </div>
+        <p id="mobileError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Enter the remaining 9 phone digits starting with a valid operator number (3-9).</p>
+      </div>
+      
+
+
+      <!-- email space -->
+
+
+
+
+      <div>
+        <label for="email" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Email Address:*</label>
+        <input type="email" id="email" name="email" placeholder="✉️ username@gmail.com" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+        <p id="emailError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Enter a valid and complete email address syntax structure.</p>
+      </div>
+
+
+
+      <!-- current address space -->
+
+
+
+      <div>
+        <label for="address" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Current Address:*</label>
+        <input type="text" id="address" name="address" placeholder="📍 City, Country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+        <p id="addressError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Current address location description is required.</p>
+      </div>
+
+
+
+
+      <!-- discord account space -->
+
+
+
+
+      <div class="discord-checkbox bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600/60">
+        <label class="block mb-2 text-sm font-semibold text-gray-900 dark:text-gray-300">Do you have a Discord account?*</label>
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center">
+            <input type="radio" id="discord-yes" name="discord" value="Yes" class="w-4 h-4 text-blue-600 border-gray-300"/>
+            <label for="discord-yes" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
+          </div>
+          <div class="flex items-center">
+            <input type="radio" id="discord-no" name="discord" value="No" class="w-4 h-4 text-blue-600 border-gray-300" />
+            <label for="discord-no" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
+          </div>
+        </div>
+        <p id="discordRadioError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Please select whether you have a discord identity.</p>
+      </div>
+
+      <div id="discordIdWrapper" class="hidden">
+        <label for="discord-id" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Discord ID:</label>
+        <input type="text" id="discord-id" name="discord-id" placeholder="💬 Your Discord Username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"/>
+        <p id="discordIdError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Discord ID username can't be left empty when selecting 'Yes'.</p>
+      </div>
+
+
+      <!-- district selection space -->
+      
+      
+      
+      
+      
+      <div>
+        <label for="district" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300">Select Your District:*</label>
+        <select id="district" name="district" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          <option value="">-- 🏠 Select District --</option>
+          <option value="Dhaka">Dhaka</option>
+          <option value="Chittagong">Chittagong</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Barisal">Barisal</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Mymensingh">Mymensingh</option>
+          <option value="Rajshahi">Rajshahi</option>
+        </select>
+        <p id="districtError" class="text-xs text-red-500 mt-1 hidden font-medium">⚠️ Please select your district choice from the choice parameters list.</p>
+      </div>
+
+
+      <!-- submit button -->
+
+      <button type="submit" id="submitBtn" class="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 transition-colors cursor-pointer">Submit</button>
+    </form>
+  </div>
+    <!-- table space start from here -->
+
+
+  <hr class="my-8 border-gray-200 dark:border-gray-700 max-w-5xl mx-auto" />
+
+  <div class="max-w-5xl mx-auto my-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 mb-16">
+    <h2 class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Submitted Applications Table</h2>
+
+    <div class="search_box flex flex-nowrap items-center justify-between gap-3 mb-6 overflow-x-auto pb-2">
+      
+      <div class="flex items-center shrink-0 space-x-2 bg-gray-50 dark:bg-gray-700/30 p-1.5 px-3 rounded-lg border border-gray-200 dark:border-gray-700">
+        <label for="customLengthSelector" class="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 whitespace-nowrap">Show entries:</label>
+        <select id="customLengthSelector" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 p-1 dark:bg-gray-700 dark:border-gray-600 dark:text-white cursor-pointer font-medium">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+
+      <div class="flex flex-nowrap items-center gap-2 shrink-0">
+        <input type="text" id="customSearchInput" placeholder="🔍 Search..." class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white w-32 sm:w-48 md:w-64" />
+        <button id="searchBtn" class="px-3 sm:px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 cursor-pointer whitespace-nowrap">Search</button>
+        <button id="resetBtn" type="button" class="px-3 sm:px-4 py-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white cursor-pointer whitespace-nowrap">Reset</button>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 p-2">
+      <table id="appTable" class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-collapse">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-gray-200 dark:border-gray-600">
+          <tr>
+            <th class="px-4 py-3 font-semibold">Name</th>
+            <th class="px-4 py-3 font-semibold">Department</th>
+            <th class="px-4 py-3 font-semibold min-w-[160px]">Social Link</th>
+            <th class="px-4 py-3 font-semibold">Mobile</th>
+            <th class="px-4 py-3 font-semibold">Email</th>
+            <th class="px-4 py-3 font-semibold">Address</th>
+            <th class="px-4 py-3 font-semibold">Discord</th>
+            <th class="px-4 py-3 font-semibold">Discord ID</th>
+            <th class="px-4 py-3 font-semibold">District</th>
+            <th class="px-4 py-3 font-semibold text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody" class="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800">
+          </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="fixed bottom-5 left-5 z-50 pointer-events-none"></div>
+
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

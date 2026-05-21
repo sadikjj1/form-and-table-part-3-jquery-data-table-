@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.sort-icon {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+mark {
+  
+  padding: 2px 4px;
+  border-radius: 4px;
+}
