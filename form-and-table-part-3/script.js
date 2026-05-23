@@ -384,6 +384,8 @@ $(document).ready(function() {
         $('#discordIdWrapper').hide().addClass('hidden');
         $('#submitBtn').text('Submit').removeClass('bg-amber-600').addClass('bg-blue-700');
         $('#formHeading').text('Department Selection Form');
+        // Trigger deletion toast notice 
+        // now i will commit
       }
       renderStoredDataToGrid();
     }
